@@ -600,7 +600,6 @@ NSString *dzn_implementationKey(id target, SEL selector)
         return nil;
     }
     
-<<<<<<< HEAD
     Class baseClass;
     if ([target isKindOfClass:[UITableView class]]) baseClass = [UITableView class];
     else if ([target isKindOfClass:[UICollectionView class]]) baseClass = [UICollectionView class];
@@ -611,27 +610,6 @@ NSString *dzn_implementationKey(id target, SEL selector)
     
     NSString *selectorName = NSStringFromSelector(selector);
     return [NSString stringWithFormat:@"%@_%@",className,selectorName];
-=======
-    NSString *className = NSStringFromClass([class class]);
-    
-    NSString *selectorName = NSStringFromSelector(selector);
-    return [NSString stringWithFormat:@"%@_%@",className,selectorName];
-}
-
-Class dzn_baseClassToSwizzleForTarget(id target)
-{
-    if ([target isKindOfClass:[UITableView class]]) {
-        return [UITableView class];
-    }
-    else if ([target isKindOfClass:[UICollectionView class]]) {
-        return [UICollectionView class];
-    }
-    else if ([target isKindOfClass:[UIScrollView class]]) {
-        return [UIScrollView class];
-    }
-    
-    return nil;
->>>>>>> parent of dbd4991... Revert "Light syntax tweaks"
 }
 
 - (void)swizzleIfPossible:(SEL)selector
@@ -643,7 +621,7 @@ Class dzn_baseClassToSwizzleForTarget(id target)
     
     // Create the lookup table
     if (!_impLookupTable) {
-        _impLookupTable = [[NSMutableDictionary alloc] initWithCapacity:3]; // 3 represent the supported base classes
+        _impLookupTable = [[NSMutableDictionary alloc] initWithCapacity:2];
     }
     
     // We make sure that setImplementation is called once per class kind, UITableView or UICollectionView.
